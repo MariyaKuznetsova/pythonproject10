@@ -12,9 +12,9 @@ class Command(BaseCommand):
         category, _ = Category.objects.get_or_create(name='Бобы', description="Пищевые")
 
         products = [
-            {'name': 'Горох', 'description': 'Молодой', 'category': category, 'price': 100},
-            {'name': 'Фасоль', 'description': 'Молодой', 'category': category, 'price': 80},
-            {'name': 'Чечевица', 'description': 'Молодой', 'category': category, 'price': 30},
+            {'name': 'Горох', 'description': 'Содержит большое количество биологически активных соединений.', 'category': category, 'price': 100},
+            {'name': 'Фасоль', 'description': 'Аминокислота аргинин необходима для азотистого обмена, снижает в крови уровень глюкозы.', 'category': category, 'price': 80},
+            {'name': 'Чечевица', 'description': 'Чечевица богата микроэлементами/', 'category': category, 'price': 30},
         ]
 
         for product_data in products:
