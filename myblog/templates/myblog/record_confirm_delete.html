@@ -6,17 +6,11 @@
         <form class="row" method="post" enctype="multipart/form-data">
             <div class="card">
                 <div class="card-body">
+                    <p class="card-text">Вы действительно хотите удалить запись?</p>
             {% csrf_token %}
-            {{ form.as_p }}
             <div class="col-4">
-            <button type="submit" class="btn btn-primary">
-                {% if object %}
-                Сохранить
-                {% else %}
-                Создать
-                {% endif %}
-            </button>
-            <a href="{% url 'myblog:record_list' %}" class="btn btn-danger">Отмена</a>
+            <button type="submit" class="btn btn-danger">Удалить</button>
+            <a href="{% url 'myblog:record_list' %}" class="btn btn-secondary">Отмена</a>
              </div>
                     </div>
                 </div>
