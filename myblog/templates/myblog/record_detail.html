@@ -9,7 +9,7 @@
                     <img src="{{ record.image | media_filter }}" style="max-width: 100%; height: 250px;">
                     <div class="card-body">
                         <p class="card-text">Название: {{ object.title }}</p>
-                        <p class="card-text">Описание: {{ object.contents|truncatechars:100 }}</p>
+                        <p class="card-text">Описание: {{ object.contents }}</p>
                         <p class="card-text">Количество просмотров: {{ object.number_of_views }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="btn-group">
