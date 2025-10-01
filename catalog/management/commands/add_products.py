@@ -3,7 +3,7 @@ from catalog.models import Product, Category
 
 
 class Command(BaseCommand):
-    help = 'Add products to the database'
+    help = 'Add catalog to the database'
 
     def handle(self, *args, **kwargs):
         # Удаляем существующие записи
