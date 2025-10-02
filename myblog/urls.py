@@ -9,6 +9,6 @@ urlpatterns = [
     path("myblog/<int:pk>/", RecordDetailView.as_view(), name="record_detail"),
     path("myblog/create/", RecordCreateView.as_view(), name="record_create"),
     path("myblog/<int:pk>/update/", RecordUpdateView.as_view(), name="record_update"),
-    path("myblog/<int:pk>/delete", RecordDeleteView.as_view(), name="record_delete"),
+    path("myblog/<int:pk>/delete/", RecordDeleteView.as_view(), name="record_delete"),
 
 ]
