@@ -4,7 +4,7 @@ from django.forms import BooleanField
 
 from catalog.models import Product
 
-class ProductFormMixin:
+class BootstrapFormMixin:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for fil_name, fild in self.fields.items():
@@ -14,7 +14,7 @@ class ProductFormMixin:
                 fild.widget.attrs['class'] = "form-control"
 
 
-class ProductForm(ProductFormMixin, forms.ModelForm):
+class ProductForm(BootstrapFormMixin, forms.ModelForm):
     class Meta:
         model = Product
         fields = ["name", "description", "category", "price"]
