@@ -13,11 +13,16 @@
                         <p class="card-text">{{ product.description|truncatechars:100 }}</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="col-8">
+                                {% csrf_token %}
                                 <a class="btn btn-primary" href="{% url 'catalog:product_detail' product.pk %}" role="article">Посмотреть</a>
+                                {% if user == product.owner %}
                                 <a class="btn btn-primary" href="{% url 'catalog:product_update' product.pk %}" role="article">Редактировать</a>
+                                {% endif %}
                                 </div>
                                 <div class="col-5">
-                                <a class="btn btn-danger" href="{% url 'catalog:product_delete' product.pk %}" role="article">Удалить</a>
+                                    {% if perms.product.can_unpublish_product and perms.product.can_delete_product or user == product.owner %}
+                                    <a class="btn btn-danger" href="{% url 'catalog:product_delete' product.pk %}" role="article">Удалить</a>
+                                    {% endif %}
                             </div>
                         </div>
                     </div>
