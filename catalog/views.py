@@ -70,5 +70,5 @@ class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView)
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
         if not obj.owner == self.request.user:
-            raise HttpResponseForbidden("У вас нет прав для удаление этого продукта")
+            return HttpResponseForbidden("У вас нет прав для удаление этого продукта")
         return obj
