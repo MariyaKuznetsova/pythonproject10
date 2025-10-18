@@ -60,6 +60,11 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product_list')
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if not obj.owner == self.request.user:
+            return HttpResponseForbidden("У вас нет прав для редактирование этого продукта")
+        return obj
 
 class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Product
