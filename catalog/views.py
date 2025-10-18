@@ -1,3 +1,4 @@
+from django.core.cache import cache
 from django.shortcuts import get_object_or_404, redirect
 
 from catalog.forms import ProductForm
@@ -6,6 +7,9 @@ from django.views.generic import ListView, DetailView, TemplateView, CreateView,
 from django.urls import reverse_lazy, reverse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseForbidden
+
+from catalog.services import ProductService
+from config.settings import CACHES
 
 
 class UnpublishProductView(LoginRequiredMixin, View):
@@ -35,6 +39,15 @@ class DeleteProductView(LoginRequiredMixin, View):
 
 class ProductListView(ListView):
     model = Product
+    template_name = 'catalog/product_list.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        queryset = cache.get('products_queryset')
+        if not queryset:
+            queryset = super().get_queryset()
+            cache.set('products_queryset', queryset, 60)
+        return queryset
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
