@@ -49,6 +49,10 @@ class ProductListView(ListView):
             cache.set('products_queryset', queryset, 60)
         return queryset
 
+    # def get_queryset_list(self):
+    #     category_id = self.kwargs.get('category_id')
+    #     return ProductService.get_products_by_category(category_id)
+
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
     model = Product
