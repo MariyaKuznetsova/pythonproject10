@@ -42,16 +42,18 @@ class ProductListView(ListView):
     template_name = 'catalog/product_list.html'
     context_object_name = 'products'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product_category = self.object.category
+        context['by_category'] = ProductService.get_products_by_category(product_category)
+        return context
+
     def get_queryset(self):
         queryset = cache.get('products_queryset')
         if not queryset:
             queryset = super().get_queryset()
             cache.set('products_queryset', queryset, 60)
         return queryset
-
-    # def get_queryset_list(self):
-    #     category_id = self.kwargs.get('category_id')
-    #     return ProductService.get_products_by_category(category_id)
 
 
 class ProductDetailView(LoginRequiredMixin, DetailView):
