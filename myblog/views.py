@@ -1,14 +1,13 @@
-from django.core.exceptions import ImproperlyConfigured
-from django.db.models import QuerySet
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
 from myblog.models import Record
-from django.urls import reverse_lazy, reverse
-from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
+
 
 class RecordCreateView(CreateView):
     model = Record
-    fields = ['title', 'contents', 'image', 'is_publication', 'number_of_views']
-    success_url = reverse_lazy('myblog:record_list')
+    fields = ["title", "contents", "image", "is_publication", "number_of_views"]
+    success_url = reverse_lazy("myblog:record_list")
 
 
 class RecordDetailView(DetailView):
@@ -20,6 +19,7 @@ class RecordDetailView(DetailView):
         self.object.save()
         return self.object
 
+
 class RecordListView(ListView):
     model = Record
 
@@ -30,14 +30,13 @@ class RecordListView(ListView):
 
 class RecordUpdateView(UpdateView):
     model = Record
-    fields = ['title', 'contents', 'image', 'is_publication', 'number_of_views']
-    success_url = reverse_lazy('myblog:record_list')
+    fields = ["title", "contents", "image", "is_publication", "number_of_views"]
+    success_url = reverse_lazy("myblog:record_list")
 
     def get_success_url(self):
-        return reverse('myblog:record_detail', args=[self.kwargs.get("pk")])
+        return reverse("myblog:record_detail", args=[self.kwargs.get("pk")])
 
 
 class RecordDeleteView(DeleteView):
     model = Record
-    success_url = reverse_lazy('myblog:record_list')
-
+    success_url = reverse_lazy("myblog:record_list")

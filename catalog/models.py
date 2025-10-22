@@ -1,4 +1,3 @@
-
 from django.db import models
 
 from users.models import User
@@ -21,7 +20,14 @@ class Product(models.Model):
     name = models.CharField(max_length=150, verbose_name="Название продукта")
     description = models.CharField(max_length=150, verbose_name="Описание продукта")
     image = models.ImageField(upload_to="images/", blank=True, null=True, verbose_name="Изображение")
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Категория продукта", related_name="products")
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+        verbose_name="Категория продукта",
+        related_name="products",
+    )
     price = models.IntegerField()
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateField(auto_now=True)
@@ -40,6 +46,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-
-

@@ -9,6 +9,7 @@
                 <div class="card shadow-sm">
                     <img src="{{ product.image | media_filter }}" style="max-width: 100%; height: 250px;">
                     <div class="card-body">
+                        <p class="card-text">{{ product.category }}</p>
                         <p class="card-text">{{ product.name }}</p>
                         <p class="card-text">{{ product.description|truncatechars:100 }}</p>
                         <div class="d-flex justify-content-between align-items-center">
