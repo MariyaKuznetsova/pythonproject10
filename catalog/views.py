@@ -42,8 +42,8 @@ class ProductListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        product_category = self.object.category
-        context["by_category"] = get_products_by_category(product_category)
+        product_category = context['products'][0].category
+        context["category"] = get_products_by_category(product_category)
         return context
 
     def get_queryset(self):
